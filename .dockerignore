@@ -1,0 +1,5 @@
+.idea
+*.iml
+.git/
+out/
+../testovoe_4/Dockerfile

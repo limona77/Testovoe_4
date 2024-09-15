@@ -1,0 +1,31 @@
+run:
+  timeout: 10m
+linters:
+  disable-all: true
+  enable:
+    - whitespace
+    - goconst
+    - gochecknoinits
+    - gocheckcompilerdirectives
+    - containedctx
+    - errname
+    - ineffassign
+    - gosimple
+    - gofumpt
+    - unused
+    - govet
+    - errcheck
+    - lll
+    - gocheckcompilerdirectives
+    - gocritic
+    - ireturn
+linters-settings:
+  lll:
+    line-length: 120
+    tab-width: 2
+issues:
+  exclude-rules:
+    - path: _test.go
+      linters:
+        - lll
+        - containedctx
