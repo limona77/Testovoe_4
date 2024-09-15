@@ -1,31 +1,33 @@
 run:
-  timeout: 10m
+  timeout: 10m  # Устанавливает тайм-аут выполнения линтеров на 10 минут
+
 linters:
-  disable-all: true
+  disable-all: true  # Отключает все линтеры по умолчанию
   enable:
-    - whitespace
-    - goconst
-    - gochecknoinits
-    - gocheckcompilerdirectives
-    - containedctx
-    - errname
-    - ineffassign
-    - gosimple
-    - gofumpt
-    - unused
-    - govet
-    - errcheck
-    - lll
-    - gocheckcompilerdirectives
-    - gocritic
-    - ireturn
+    - whitespace  # Проверяет лишние пробелы
+    - goconst  # Выносит повторяющиеся строковые и числовые значения в константы
+    - gochecknoinits  # Запрещает использование функции init()
+    - gocheckcompilerdirectives  # Проверяет правильность директив компилятора Go
+    - containedctx  # Убедиться, что контексты не пересекаются с другими областями видимости
+    - errname  # Проверяет правильность именования переменных ошибок
+    - ineffassign  # Находит неэффективные присваивания переменных
+    - gosimple  # Предлагает упрощенные версии кода
+    - gofumpt  # Форматирует код по стилю gofmt, делая его читабельнее
+    - unused  # Ищет неиспользуемые переменные, функции и типы
+    - govet  # Статически анализирует код на предмет потенциальных ошибок
+    - errcheck  # Проверяет корректную обработку ошибок
+    - lll  # Контролирует длину строк (ограничение задается в настройках ниже)
+    - gocritic  # Предлагает улучшения и оптимизации на основе анализа кода
+    - ireturn  # Проверяет корректность типов возвращаемых значений
+
 linters-settings:
   lll:
-    line-length: 120
-    tab-width: 2
+    line-length: 120  # Устанавливает максимальную длину строки в 120 символов
+    tab-width: 2  # Устанавливает ширину табуляции в 2 пробела
+
 issues:
   exclude-rules:
-    - path: _test.go
+    - path: _test.go  # Исключает файлы с суффиксом _test.go
       linters:
-        - lll
-        - containedctx
+        - lll  # Отключает проверку длины строки для тестовых файлов
+        - containedctx  # Отключает проверку использования контекста в тестовых файлах

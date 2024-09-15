@@ -247,7 +247,7 @@ func (tR *TenderRepository) UpdateStatus(ctx context.Context, tender model.Tende
 	if creatorUsername != tender.CreatorUsername {
 		return model.Tender{}, custom_errors.ErrAccessDenied
 	}
-	sql = `UPDATE tender SET status = $1, creator_username = $2, updated_at = NOW()  
+	sql = `UPDATE tender SET status = $1, creator_username = $2, updated_at = NOW(),version = version + 1  
               WHERE id = $3 RETURNING id, title, description, service_type, status, version, created_at`
 
 	var res model.Tender

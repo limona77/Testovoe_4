@@ -304,7 +304,7 @@ func (bR *BidsRepository) GetBidStatus(ctx context.Context, bidId uuid.UUID, use
 func (bR *BidsRepository) UpdateBidsStatus(ctx context.Context, bids model.Bids) (model.Bids, error) {
 	path := "internal.repository.bids.UpdateBidsStatus"
 
-	sql := `UPDATE bids SET status = $1, updated_at = NOW() 
+	sql := `UPDATE bids SET status = $1, updated_at = NOW(), version = version + 1 
 			WHERE id = $2 AND creator_username = $3 
 			RETURNING id,
                   title,
@@ -359,7 +359,7 @@ func (bR *BidsRepository) UpdateBidsDecision(
 	}
 
 	query := `UPDATE bids
-	          SET decision = $1
+	          SET decision = $1, version = version + 1
 	          WHERE id = $2
 	          RETURNING id,
                   title,
